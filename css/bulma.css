@@ -2732,6 +2732,10 @@ a.box:active {
   height: unset;
 }
 
+.textarea.has-fixed-size {
+  resize: none;
+}
+
 .checkbox,
 .radio {
   cursor: pointer;
@@ -4413,7 +4417,7 @@ a.box:active {
   border-top-right-radius: 0;
 }
 
-.tag {
+.tag:not(body) {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -4434,72 +4438,72 @@ a.box:active {
   white-space: nowrap;
 }
 
-.tag .delete {
+.tag:not(body) .delete {
   margin-left: 0.25em;
   margin-right: -0.375em;
 }
 
-.tag.is-white {
+.tag:not(body).is-white {
   background-color: white;
   color: #0a0a0a;
 }
 
-.tag.is-black {
+.tag:not(body).is-black {
   background-color: #0a0a0a;
   color: white;
 }
 
-.tag.is-light {
+.tag:not(body).is-light {
   background-color: whitesmoke;
   color: #363636;
 }
 
-.tag.is-dark {
+.tag:not(body).is-dark {
   background-color: #363636;
   color: whitesmoke;
 }
 
-.tag.is-primary {
+.tag:not(body).is-primary {
   background-color: #00d1b2;
   color: #fff;
 }
 
-.tag.is-info {
+.tag:not(body).is-info {
   background-color: #3273dc;
   color: #fff;
 }
 
-.tag.is-success {
+.tag:not(body).is-success {
   background-color: #23d160;
   color: #fff;
 }
 
-.tag.is-warning {
+.tag:not(body).is-warning {
   background-color: #ffdd57;
   color: rgba(0, 0, 0, 0.7);
 }
 
-.tag.is-danger {
+.tag:not(body).is-danger {
   background-color: #ff3860;
   color: #fff;
 }
 
-.tag.is-medium {
+.tag:not(body).is-medium {
   font-size: 1rem;
 }
 
-.tag.is-large {
+.tag:not(body).is-large {
   font-size: 1.25rem;
 }
 
-.tag.is-delete {
+.tag:not(body).is-delete {
   margin-left: 1px;
   padding: 0;
   position: relative;
   width: 2em;
 }
 
-.tag.is-delete:before, .tag.is-delete:after {
+.tag:not(body).is-delete:before, .tag:not(body).is-delete:after {
   background-color: currentColor;
   content: "";
   display: block;
@@ -4512,25 +4516,25 @@ a.box:active {
           transform-origin: center center;
 }
 
-.tag.is-delete:before {
+.tag:not(body).is-delete:before {
   height: 1px;
   width: 50%;
 }
 
-.tag.is-delete:after {
+.tag:not(body).is-delete:after {
   height: 50%;
   width: 1px;
 }
 
-.tag.is-delete:hover, .tag.is-delete:focus {
+.tag:not(body).is-delete:hover, .tag:not(body).is-delete:focus {
   background-color: #e8e8e8;
 }
 
-.tag.is-delete:active {
+.tag:not(body).is-delete:active {
   background-color: #dbdbdb;
 }
 
-.tag.is-rounded {
+.tag:not(body).is-rounded {
   border-radius: 290486px;
 }
 
@@ -8263,7 +8267,7 @@ label.panel-block:hover {
 }
 
 .columns:not(:last-child) {
-  margin-bottom: 0.75rem;
+  margin-bottom: calc(1.5rem - 0.75rem);
 }
 
 .columns.is-centered {
@@ -8278,32 +8282,17 @@ label.panel-block:hover {
   margin-top: 0;
 }
 
-.columns.is-gapless:last-child {
-  margin-bottom: 0;
+.columns.is-gapless > .column {
+  margin: 0;
+  padding: 0 !important;
 }
 
 .columns.is-gapless:not(:last-child) {
   margin-bottom: 1.5rem;
 }
 
-.columns.is-gapless > .column {
-  margin: 0;
-  padding: 0;
-}
-
-@media screen and (min-width: 769px), print {
-  .columns.is-grid {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .columns.is-grid > .column {
-    max-width: 33.3333%;
-    padding: 0.75rem;
-    width: 33.3333%;
-  }
-  .columns.is-grid > .column + .column {
-    margin-left: 0;
-  }
+.columns.is-gapless:last-child {
+  margin-bottom: 0;
 }
 
 .columns.is-mobile {
@@ -8337,6 +8326,53 @@ label.panel-block:hover {
     display: -ms-flexbox;
     display: flex;
   }
+}
+
+.columns.is-variable {
+  --columnGap: 0.75rem;
+  margin-left: calc(-1 * var(--columnGap));
+  margin-right: calc(-1 * var(--columnGap));
+}
+
+.columns.is-variable .column {
+  padding-left: var(--columnGap);
+  padding-right: var(--columnGap);
+}
+
+.columns.is-variable.is-0 {
+  --columnGap: 0rem;
+}
+
+.columns.is-variable.is-1 {
+  --columnGap: 0.25rem;
+}
+
+.columns.is-variable.is-2 {
+  --columnGap: 0.5rem;
+}
+
+.columns.is-variable.is-3 {
+  --columnGap: 0.75rem;
+}
+
+.columns.is-variable.is-4 {
+  --columnGap: 1rem;
+}
+
+.columns.is-variable.is-5 {
+  --columnGap: 1.25rem;
+}
+
+.columns.is-variable.is-6 {
+  --columnGap: 1.5rem;
+}
+
+.columns.is-variable.is-7 {
+  --columnGap: 1.75rem;
+}
+
+.columns.is-variable.is-8 {
+  --columnGap: 2rem;
 }
 
 .tile {
@@ -9499,5 +9535,22 @@ label.panel-block:hover {
 .footer {
   background-color: whitesmoke;
   padding: 3rem 1.5rem 6rem;
+}
+
+.compact-field-group {
+  border: 1px solid #000;
+  display: block;
+}
+
+.compact-field-group .compact-field-label {
+  font-size: 0.75rem;
+  display: block;
+}
+
+.compact-field-group .compact-field-input {
+  font-size: 16px;
+  border: none;
+  background: transparent;
+  outline: none;
 }
 /*# sourceMappingURL=bulma.css.map */

@@ -1,0 +1,16 @@
+.compact-field-group {
+  border: 1px solid #000;
+  display: block;
+
+  .compact-field-label {
+    font-size: $size-small;
+    display: block;
+  }
+
+  .compact-field-input {
+    font-size: $body-size;
+    border: none;
+    background: transparent;
+    outline: none;
+  }
+}
